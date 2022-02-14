@@ -1,0 +1,15 @@
+{
+	"select_dir":"Verzeichnis auswählen",
+	"quit":"Beenden",
+	"no_dir_selected":"Es wurde noch kein Verzeichnis ausgewählt",
+	"will_be_applied_to_zero":"Es werden 0 PDFs geändert",
+	"pwd":"Passwort:",
+	"add_pwd_protection":"PDFs mit Passwort sichern",
+	"remove_pwd_protection":"Passwörter von PDFs entfernen",
+	"remove_pwd_protection_checkbox":"Password entfernen?",
+	"pdfs_were_found":"Es wurden {str(len(self.pdfs))} PDFs gefunden",
+	"no_pwd_provided":"Es wurde kein Password eingegeben!",
+	"dirs_are_being_searched":"Verzeichnisse werden durchsucht. Bitte warten",
+	"pdfs_were_modified":"PDF wurde {\"entschlüsselt\" if self.checkBoxDecrypt.isChecked() else \"verschlüsselt\"} ({pdf_path})",
+	"success":"Erfolg: Es wurden {len(self.pdfs)} PDFs {\"entschlüsselt\" if self.checkBoxDecrypt.isChecked() else \"verschlüsselt\"}"
+}
