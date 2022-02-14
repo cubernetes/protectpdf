@@ -115,6 +115,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication([])
 
     widget = ProtectPdfWindow()
+    widget.setFixedSize(400, 200)
     widget.show()
 
     sys.exit(app.exec())
