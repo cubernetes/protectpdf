@@ -50,8 +50,7 @@ class ProtectPdfWindow(QtWidgets.QWidget):
         self.layout.addWidget(self.infoText)
         self.layout.addWidget(self.exitButton)
 
-        self.passwordText.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum))
-        self.checkBoxDecrypt.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum))
+        self.infoText.setWordWrap(True)
 
         self.buttonChooseDir.clicked.connect(self.pickDirectory)
         self.buttonStartEncrypting.clicked.connect(self.protectPdfs)
@@ -96,7 +95,7 @@ class ProtectPdfWindow(QtWidgets.QWidget):
                 infoText += modification + '\n'
                 cnt += 1
             except Exception as e:
-                error = self.eval_lang_string(lang['error_on_pdf_processing'], locals())
+                error = self.eval_lang_string(self.lang['error_on_pdf_processing'], locals())
                 print(error)
                 print(e)
                 infoText += error + '\n'
