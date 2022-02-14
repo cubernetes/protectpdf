@@ -78,44 +78,57 @@ class ProtectPdfWindow(QtWidgets.QWidget):
             self.infoText.setText(self.lang['no_pwd_provided'])
             return
         self.infoText.setText('')
+        infoText = ''
+        cnt = 0
         for pdf_path in self.pdfs:
-            if self.checkBoxDecrypt.isChecked():
-                pdf = Pdf.open(pdf_path, password=password)
-                pdf.save(pdf_path + '.tmp')
-            else:
-                pdf = Pdf.open(pdf_path)
-                pdf.save(pdf_path + '.tmp', encryption=Encryption(owner=password, user=password, R=4))
-            pdf.close()
-            os.remove(pdf_path)
-            os.rename(pdf_path + '.tmp', pdf_path)
-            print(self.eval_lang_string(self.lang['pdfs_were_modified'], locals()))
-            self.infoText.setText(self.eval_lang_string(self.lang['pdfs_were_modified'], locals()))
-        self.infoText.setText(self.eval_lang_string(self.lang['success'], locals()))
+            try:
+                if self.checkBoxDecrypt.isChecked():
+                    pdf = Pdf.open(pdf_path, password=password)
+                    pdf.save(pdf_path + '.tmp')
+                else:
+                    pdf = Pdf.open(pdf_path)
+                    pdf.save(pdf_path + '.tmp', encryption=Encryption(owner=password, user=password, R=4))
+                pdf.close()
+                os.remove(pdf_path)
+                os.rename(pdf_path + '.tmp', pdf_path)
+                modification = self.eval_lang_string(self.lang['pdfs_were_modified'], locals())
+                print(modification)
+                infoText += modification + '\n'
+                cnt += 1
+            except Exception as e:
+                error = self.eval_lang_string(lang['error_on_pdf_processing'], locals())
+                print(error)
+                print(e)
+                infoText += error + '\n'
+        infoText += self.eval_lang_string(self.lang['done'], locals())
+        self.infoText.setText(infoText)
 
     def eval_lang_string(self, s, env=globals() | locals()):
         return eval("f'" + s + "'", env)
 
 default_lang = {
-	"select_dir":"Select directory",
-	"quit":"Quit",
-	"no_dir_selected":"No directory selected",
-	"will_be_applied_to_zero":"No PDFs will be modified",
+    "select_dir":"Select directory",
+    "quit":"Quit",
+    "no_dir_selected":"No directory selected",
+    "will_be_applied_to_zero":"No PDFs will be modified",
     "pwd":"Password:",
-	"add_pwd_protection":"Protect PDFs with password",
-	"remove_pwd_protection":"Remove passwords from PDFs",
-	"remove_pwd_protection_checkbox":"Remove password?",
-	"pdfs_were_found":"{str(len(self.pdfs))} PDFs were found",
-	"no_pwd_provided":"No password was specified",
-	"dirs_are_being_searched":"Directories are being searched",
-	"pdfs_were_modified":"PDF was {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"} ({pdf_path})",
-    "success":"Success: {len(self.pdfs)} PDFs were {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"}"
+    "add_pwd_protection":"Protect PDFs with password",
+    "remove_pwd_protection":"Remove passwords from PDFs",
+    "remove_pwd_protection_checkbox":"Remove password?",
+    "pdfs_were_found":"{str(len(self.pdfs))} PDFs were found",
+    "no_pwd_provided":"No password was specified",
+    "dirs_are_being_searched":"Directories are being searched",
+    "pdfs_were_modified":"PDF was {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"} ({pdf_path})",
+    "done":"Done: {cnt}/{len(self.pdfs)} PDFs were {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"}",
+    "error_on_pdf_processing":"An error occured while processing PDF {pdf_path}"
 }
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
 
     widget = ProtectPdfWindow()
-    widget.setFixedSize(400, 200)
+    widget.resize(400, 200)
     widget.show()
 
     sys.exit(app.exec())

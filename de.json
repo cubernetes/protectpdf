@@ -11,5 +11,6 @@
 	"no_pwd_provided":"Es wurde kein Password eingegeben!",
 	"dirs_are_being_searched":"Verzeichnisse werden durchsucht. Bitte warten",
 	"pdfs_were_modified":"PDF wurde {\"entschlüsselt\" if self.checkBoxDecrypt.isChecked() else \"verschlüsselt\"} ({pdf_path})",
-	"success":"Erfolg: Es wurden {len(self.pdfs)} PDFs {\"entschlüsselt\" if self.checkBoxDecrypt.isChecked() else \"verschlüsselt\"}"
+	"done":"Fertig: Es wurden {cnt}/{len(self.pdfs)} PDFs {\"entschlüsselt\" if self.checkBoxDecrypt.isChecked() else \"verschlüsselt\"}",
+    "error_on_pdf_processing":"Ein Fehler ist aufgetreten beim Verarbeiten von {pdf_path}"
 }

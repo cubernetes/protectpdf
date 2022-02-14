@@ -11,5 +11,6 @@
 	"no_pwd_provided":"No password was specified",
 	"dirs_are_being_searched":"Directories are being searched",
 	"pdfs_were_modified":"PDF was {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"} ({pdf_path})",
-    "success":"Success: {len(self.pdfs)} PDFs were {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"}"
+    "done":"Done: {cnt}/{len(self.pdfs)} PDFs were {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"}",
+    "error_on_pdf_processing":"An error occured while processing PDF {pdf_path}"
 }
