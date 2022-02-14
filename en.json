@@ -1,0 +1,15 @@
+{
+	"select_dir":"Select directory",
+	"quit":"Quit",
+	"no_dir_selected":"No directory selected",
+	"will_be_applied_to_zero":"No PDFs will be modified",
+    "pwd":"Password:",
+	"add_pwd_protection":"Protect PDFs with password",
+	"remove_pwd_protection":"Remove passwords from PDFs",
+	"remove_pwd_protection_checkbox":"Remove password?",
+	"pdfs_were_found":"{str(len(self.pdfs))} PDFs were found",
+	"no_pwd_provided":"No password was specified",
+	"dirs_are_being_searched":"Directories are being searched",
+	"pdfs_were_modified":"PDF was {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"} ({pdf_path})",
+    "success":"Success: {len(self.pdfs)} PDFs were {\"decrypted\" if self.checkBoxDecrypt.isChecked() else \"encrypted\"}"
+}

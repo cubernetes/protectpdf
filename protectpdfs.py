@@ -13,7 +13,7 @@ class ProtectPdfWindow(QtWidgets.QWidget):
         super().__init__()
 
         if os.path.isfile(lang_file):
-            self.lang = json.loads(open(lang_file, 'r').read())
+            self.lang = json.loads(open(lang_file, 'r', encoding='utf8').read())
         else:
             print(f'Error: File {lang_file} does not exist. Using default language English')
             self.lang = default_lang
